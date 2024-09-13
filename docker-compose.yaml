@@ -14,13 +14,17 @@ services:
     image: redis:7-alpine
   bytebase:
     image: bytebase/bytebase:2.22.3
-    init: true
-    container_name: bytebase
+    container_name: hoteler-bytebase-2.22.0
     restart: always
     ports:
-      - "5678:5678"
+      - 5678:5678
+    # # Uncomment the following lines to persist data
     volumes:
-      - ~/.bytebase/data:/var/opt/bytebase
+       - hoteler-bytebase-volume:/var/opt/bytebase
+    command: [ "--data", "/var/opt/bytebase", "--port", "5678", "--pg" ]
+    depends_on:
+      - postgres
+    
 #  api:
 #    build:
 #      context: .
