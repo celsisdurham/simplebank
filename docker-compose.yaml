@@ -14,7 +14,6 @@ services:
     image: redis:7-alpine
   bytebase:
     image: bytebase/bytebase:2.22.3
-    container_name: bytebase
     ports:
       - "8080:8080"
     volumes:
