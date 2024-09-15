@@ -26,7 +26,7 @@ services:
       SQLPAD_CONNECTIONS__pgdemo__name: Postgres demo
       SQLPAD_CONNECTIONS__pgdemo__driver: postgres
       SQLPAD_CONNECTIONS__pgdemo__host: postgres
-      SQLPAD_CONNECTIONS__pgdemo__database: sqlpad
+      SQLPAD_CONNECTIONS__pgdemo__database: simple_bank
       SQLPAD_CONNECTIONS__pgdemo__username: root
       SQLPAD_CONNECTIONS__pgdemo__password: secret
       SQLPAD_CONNECTIONS__pgdemo__multiStatementTransactionEnabled: 'true'
