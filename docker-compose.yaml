@@ -12,12 +12,27 @@ services:
       - data-volume:/var/lib/postgresql/data
   redis:
     image: redis:7-alpine
-  bytebase:
-    image: bytebase/bytebase:2.22.3
+  sqlpad:
+    image: sqlpad/sqlpad:5
+    hostname: 'sqlpad'
     ports:
-      - "8080:8080"
+      - '3000:3000'
+    environment:
+      SQLPAD_ADMIN: 'admin@sqlpad.com'
+      SQLPAD_ADMIN_PASSWORD: 'admin'
+      SQLPAD_APP_LOG_LEVEL: debug
+      SQLPAD_WEB_LOG_LEVEL: warn
+      SQLPAD_SEED_DATA_PATH: /etc/sqlpad/seed-data
+      SQLPAD_CONNECTIONS__pgdemo__name: Postgres demo
+      SQLPAD_CONNECTIONS__pgdemo__driver: postgres
+      SQLPAD_CONNECTIONS__pgdemo__host: postgres
+      SQLPAD_CONNECTIONS__pgdemo__database: sqlpad
+      SQLPAD_CONNECTIONS__pgdemo__username: root
+      SQLPAD_CONNECTIONS__pgdemo__password: secret
+      SQLPAD_CONNECTIONS__pgdemo__multiStatementTransactionEnabled: 'true'
+      SQLPAD_CONNECTIONS__pgdemo__idleTimeoutSeconds: 86400
     volumes:
-      - ~/.bytebase/data:/var/opt/bytebase
+      - ./seed-data:/etc/sqlpad/seed-data
     
 #  api:
 #    build:
